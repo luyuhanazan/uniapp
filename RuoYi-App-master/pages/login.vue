@@ -1,10 +1,9 @@
 <template>
   <view class="normal-login-container">
     <view class="logo-content align-center justify-center flex">
-      <image style="width: 100rpx;height: 100rpx;" :src="globalConfig.appInfo.logo" mode="widthFix">
-      </image>
-      <text class="title">饮食管理系统</text>
+      <text class="title" style="margin-left: auto; margin-right: auto;">饮食管理系统</text>
     </view>
+
     <view class="login-form-content">
       <view class="input-item flex align-center">
         <view class="iconfont icon-user icon"></view>

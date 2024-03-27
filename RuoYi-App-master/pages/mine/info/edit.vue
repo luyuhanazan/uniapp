@@ -11,17 +11,24 @@
         <uni-forms-item label="性别" name="sex" required>
           <uni-data-checkbox v-model="user.sex" :localdata="sexs"/>
         </uni-forms-item>
-        <uni-forms-item label="身高" name="height">
+        <uni-forms-item label="身高(米)" name="height">
           <uni-easyinput v-model="user.height" placeholder="请输入身高"/>
         </uni-forms-item>
-        <uni-forms-item label="体重" name="weight">
+        <uni-forms-item label="体重(千克)" name="weight">
           <uni-easyinput v-model="user.weight" placeholder="请输入体重"/>
         </uni-forms-item>
+		<uni-forms-item label="BMI" name="bmi">
+			<span>您的bmi为</span>
+		        <span>{{ getBMIStatus.bmi }}</span>
+				<span>&nbsp;&nbsp;</span>
+				<span>属于</span>
+		        <span>{{ getBMIStatus.status }}</span>
+		</uni-forms-item>
         <uni-forms-item label="慢性肾脏病分期(GFR值)" name="gfrValue">
           <uni-easyinput v-model="user.gfrValue" placeholder="请输入慢性肾脏病分期(GFR值)"/>
         </uni-forms-item>
-        <uni-forms-item label="活动强度" name="activityIntensity">
-          <uni-easyinput v-model="user.activityIntensity" placeholder="请输入活动强度"/>
+        <uni-forms-item label="过敏史" name="allergy">
+          <uni-easyinput v-model="user.allergy" placeholder="请输入过敏史"/>
         </uni-forms-item>
         <uni-forms-item label="并发症情况" name="complications">
           <uni-easyinput v-model="user.complications" placeholder="请输入并发症情况"/>
@@ -44,6 +51,8 @@ export default {
         sex: "",
         disable: "",
         activityIntensity: "",
+		height:"",
+		weight:"",
       },
       sexs: [{
         text: '男',
@@ -68,7 +77,32 @@ export default {
         this.$modal.msgSuccess("修改成功")
       })
     }
-  }
+  },
+  computed: {
+    // 计算属性，根据身高和体重计算BMI，并返回相应的提示信息
+    getBMIStatus() {
+          const height = parseFloat(this.user.height); // 身高（单位：米）
+          const weight = parseFloat(this.user.weight); // 体重（单位：千克）
+          let status = "";
+          let bmi = "";
+          if (!isNaN(height) && !isNaN(weight) && height > 0 && weight > 0) {
+            bmi = (weight / (height * height)).toFixed(2); // 计算并保留两位小数的BMI值
+            if (bmi < 18.5) {
+              status = "偏瘦";
+            } else if (bmi >= 18.5 && bmi < 24) {
+              status = "正常";
+            } else if (bmi >= 24 && bmi < 28) {
+              status = "偏重";
+            } else {
+              status = "超重";
+            }
+          } else {
+            status = "请输入有效的身高和体重";
+          }
+          return { bmi, status };
+        }
+      
+  },
 }
 </script>
 
@@ -106,3 +140,4 @@ page {
   margin-left: 10px;
 }
 </style>
+

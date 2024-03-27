@@ -61,7 +61,7 @@
           </view>
         </view>
       </view>
-      <view class="content-row" style="width: 100%; height:32%;  margin:10px; auto">
+      <view class="content-row" style="width: 100%; height:32%;  margin:10px  auto;">
         <view class="left-column">
           <text style="font-size: 16px;">晚餐：鸡蛋面</text>
           <image src="~@/static/images/image/wancan.png" class="row-image" />

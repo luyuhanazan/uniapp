@@ -47,5 +47,7 @@ public class User {
     private String sex;
 
     private String password;
+
+    private String allergy;
 }
 
