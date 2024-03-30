@@ -50,8 +50,7 @@
 					<view class="desc">
 						<view class="text-content">{{ item.solution }}</view>
 					</view>
-					<image src="~@/static/images/image/yiliao.png"
-						style="width: 80px; height: 60px; border-radius: 10px; margin-left: 10px;"></image>
+					<image :src="getImagePath(item.image)" style="width: 80px; height: 60px; border-radius: 10px; margin-left: 10px;"></image>
 				</view>
 			</view>
 		</view>
@@ -183,21 +182,9 @@
 			this.loadData()
 		},
 		methods: {
-			showToast() {
-				uni.showModal({
-					title: '',
-					backgroundColor: '#ffffff',
-					showCancel: 'false',
-					content: '多吃些富含维生素A、C和蛋白质的食物，多喝些茶，多吃些水果蔬菜粗粮',
-					success(res) {
-						if (res.confirm) {
-							console.log('用户点击确定');
-						} else if (res.cancel) {
-							console.log('用户点击取消');
-						}
-					}
-				});
-			},
+			getImagePath(imageName) {
+			    return require(`@/static/images/advice/${imageName}.png`);
+			  },
 			navigateToQuestion() {
 				uni.switchTab({
 					url: "/pages/question/index",

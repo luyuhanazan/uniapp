@@ -18,7 +18,7 @@
           <uni-easyinput v-model="user.weight" placeholder="请输入体重"/>
         </uni-forms-item>
 		<uni-forms-item label="BMI" name="bmi">
-			<span>您的bmi为</span>
+			<span>您的BMI为</span>
 		        <span>{{ getBMIStatus.bmi }}</span>
 				<span>&nbsp;&nbsp;</span>
 				<span>属于</span>
