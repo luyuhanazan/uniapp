@@ -36,7 +36,7 @@
 </template>
 
 <script>
-  import { getCodeImg, register } from '@/api/login'
+  import { getCodeImg,register } from '@/api/system/user'
 
   export default {
     data() {
@@ -63,13 +63,13 @@
       },
       // 获取图形验证码
       getCode() {
-        getCodeImg().then(res => {
-          this.captchaEnabled = res.captchaEnabled === undefined ? true : res.captchaEnabled
-          if (this.captchaEnabled) {
-            this.codeUrl = 'data:image/gif;base64,' + res.img
-            this.registerForm.uuid = res.uuid
-          }
-        })
+      	getCodeImg().then(res => {
+      		this.captchaEnabled = res.captchaEnabled === undefined ? true : res.captchaEnabled
+      		if (this.captchaEnabled) {
+      			this.codeUrl = 'data:image/gif;base64,' + res.data
+      			this.loginForm.uuid = res.uuid
+      		}
+      	})
       },
       // 注册方法
       async handleRegister() {
@@ -85,34 +85,21 @@
           this.$modal.msgError("请输入验证码")
         } else {
           this.$modal.loading("注册中，请耐心等待...")
-          this.register()
+          this.registerUser()
         }
       },
-      // 用户注册
-      async register() {
-        register(this.registerForm).then(res => {
-          this.$modal.closeLoading()
-          uni.showModal({
-          	title: "系统提示",
-          	content: "恭喜你，您的账号 " + this.registerForm.username + " 注册成功！",
-          	success: function (res) {
-          		if (res.confirm) {
-                uni.redirectTo({ url: `/pages/login` });
-          		}
-          	}
-          })
-        }).catch(() => {
-          if (this.captchaEnabled) {
-            this.getCode()
-          }
-        })
-      },
-      // 注册成功后，处理函数
-      registerSuccess(result) {
-        // 设置用户信息
-        this.$store.dispatch('GetInfo').then(res => {
-          this.$tab.reLaunch('/pages/index')
-        })
+      // 调用注册接口
+      async registerUser() {
+        try {
+          const response = await register(this.registerForm);
+          this.$modal.closeLoading();
+          this.$modal.msgSuccess("注册成功");
+          // 注册成功后跳转到登录页面
+          this.$router.push({ path: '/login' });
+        } catch (error) {
+          this.$modal.closeLoading();
+          this.$modal.msgError("注册失败，请重试");
+        }
       }
     }
   }

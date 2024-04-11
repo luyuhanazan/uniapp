@@ -1,28 +1,55 @@
 <template>
   <view class="main-container">
-    <text class="current-date">{{ getCurrentDate() }}</text>
-    <view class="content-container" style="width: 95%; height:85%; margin: 0 auto;">
-      <view class="content-row" style="width: 100%; height:32%; margin-bottom: 10px;">
-        <view class="left-column">
-          <text style="font-size: 16px; margin-bottom: 3px;">早餐：玉米粥</text>
-          <image src="~@/static/images/image/zaocan.png" class="row-image" />
-        </view>
-      </view>
-
-      <view class="content-row" style="width: 100%; height:32%; margin-bottom: 10px;">
-        <view class="left-column">
-          <text style="font-size: 16px; margin-bottom: 3px;">午餐：芹菜炒肉</text>
-          <image src="~@/static/images/image/wucan.png" class="row-image" />
-        </view>
-    
-      </view>
-      <view class="content-row" style="width: 100%; height:32%; margin-bottom: 10px;">
-        <view class="left-column">
-          <text style="font-size: 16px; margin-bottom: 3px;">晚餐：鸡蛋面</text>
-          <image src="~@/static/images/image/wancan.png" class="row-image" />
-        </view>
-      </view>
-    </view>
+	  <view class="cu-timeline">
+	  	<view class="cu-time">4.4</view>
+	  	<view class="cu-item">
+	  		<view class="content">
+	  			<text>早餐：</text> 玉米粥
+	  		</view>
+	  	</view>
+		<view class="cu-item">
+			<view class="content">
+				<text>午餐：</text> 芹菜炒肉
+			</view>
+		</view>
+		<view class="cu-item">
+			<view class="content">
+				<text>晚餐：</text> 面条
+			</view>
+		</view>
+		<view class="cu-time">4.3</view>
+		<view class="cu-item">
+			<view class="content">
+				<text>早餐：</text> 玉米粥
+			</view>
+		</view>
+		<view class="cu-item">
+			<view class="content">
+				<text>午餐：</text> 芹菜炒肉
+			</view>
+		</view>
+		<view class="cu-item">
+			<view class="content">
+				<text>晚餐：</text> 面条
+			</view>
+		</view>
+		<view class="cu-time">4.2</view>
+		<view class="cu-item">
+			<view class="content">
+				<text>早餐：</text> 玉米粥
+			</view>
+		</view>
+		<view class="cu-item">
+			<view class="content">
+				<text>午餐：</text> 芹菜炒肉
+			</view>
+		</view>
+		<view class="cu-item">
+			<view class="content">
+				<text>晚餐：</text> 面条
+			</view>
+		</view>
+	  </view>
   </view>
 </template>
 

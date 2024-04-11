@@ -10,6 +10,8 @@ import org.example.uniapp.service.UserService;
 import org.example.uniapp.util.Result;
 import org.example.uniapp.util.ValidateCode;
 import org.springframework.stereotype.Service;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+
 
 import javax.servlet.http.HttpSession;
 
@@ -60,5 +62,42 @@ public class UserServiceImpl extends ServiceImpl<UserDao, User> implements UserS
             return Result.fail("验证码错误");
         }
     }
+
+    @Override
+    public Result register(String username, String password, String code) {
+        HttpSession session = MySessionContext.getSession();
+        assert session != null;
+
+        // 检查验证码是否存在
+        String validate = session.getAttribute(ValidateCode.SESSION_KEY).toString();
+        if (validate == null) {
+            return Result.fail("验证码不存在");
+        }
+
+        // 检查验证码是否正确
+        if (!validate.equalsIgnoreCase(code)) {
+            return Result.fail("验证码错误");
+        }
+
+        // 检查用户名是否已存在
+        User existingUser = this.getOne(new QueryWrapper<User>().eq("nickname", username));
+        if (existingUser != null) {
+            return Result.fail("用户名已存在");
+        }
+
+        // 创建新用户对象
+        User newUser = new User();
+        newUser.setNickname(username);
+        newUser.setPassword(password);
+
+        // 保存新用户到数据库
+        boolean saved = this.save(newUser);
+        if (saved) {
+            return Result.success("注册成功");
+        } else {
+            return Result.fail("注册失败，请稍后重试");
+        }
+    }
+
 }
 

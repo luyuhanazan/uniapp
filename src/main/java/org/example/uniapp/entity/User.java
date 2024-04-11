@@ -34,6 +34,8 @@ public class User {
 
     private String activityIntensity;
 
+    private String dialysisStatus;
+
     /**
      * 并发症
      */
@@ -49,5 +51,7 @@ public class User {
     private String password;
 
     private String allergy;
+
+
 }
 

@@ -4,6 +4,7 @@ package org.example.uniapp.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.example.uniapp.common.MySessionContext;
+import org.example.uniapp.dto.RegisterDto;
 import org.example.uniapp.entity.User;
 import org.example.uniapp.service.UserService;
 import org.example.uniapp.util.Result;
@@ -37,7 +38,7 @@ public class UserController {
     @GetMapping()
     public Result selectOne() {
         HttpSession session = MySessionContext.getSession();
-        User user = (User)session.getAttribute("user");
+        User user = (User) session.getAttribute("user");
         return success(this.userService.getById(user.getId()));
     }
 
@@ -72,6 +73,11 @@ public class UserController {
     @GetMapping("login")
     public Result login(String username, String password, String code) {
         return this.userService.login(username, password, code);
+    }
+
+    @PostMapping("register")
+    public Result register(@RequestBody RegisterDto registerDto) {
+        return userService.register(registerDto.getUsername(), registerDto.getPassword(), registerDto.getCode());
     }
 }
 

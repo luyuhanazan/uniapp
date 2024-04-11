@@ -83,3 +83,11 @@ const request = config => {
 }
 
 export default request
+
+export const register = (data) => {
+    return request({
+        url: '/register',
+        method: 'post',
+        data
+    })
+}

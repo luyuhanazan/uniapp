@@ -1,4 +1,3 @@
-import upload from '@/utils/upload'
 import request from '@/utils/request'
 
 // 用户密码重置
@@ -36,10 +35,34 @@ export function uploadAvatar(data) {
   })
 }
 
+
+
+// 设置饮食偏好
 export function setDiet(data) {
   return request({
     url: '/user/setDiet',
     method: 'get',
     data
+  })
+}
+
+
+// 用户注册接口
+export function register(data) {
+  return request({
+    url: '/user/register',
+    method: 'post',
+    data
+  });
+}
+
+export function getCodeImg() {
+  return request({
+    'url': '/captchaImage',
+    headers: {
+      isToken: false
+    },
+    method: 'get',
+    timeout: 20000
   })
 }

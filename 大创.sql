@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 80200
 File Encoding         : 65001
 
-Date: 2024-03-30 18:28:51
+Date: 2024-04-04 21:50:35
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -60,10 +60,11 @@ CREATE TABLE `user` (
   `sex` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `allergy` varchar(10) DEFAULT NULL,
+  `dialysis_status` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('1', 'admin', '45', '1838523652', '1.80', '75.00', '5.00', '42', '1', '[\"川菜\",\"粤菜\",\"苏菜\"]', '1', '123456', '洋葱');
+INSERT INTO `user` VALUES ('1', 'admin', '45', '1838523652', '1.80', '75.00', '5.00', '轻度', '高血压', '[\"川菜\",\"粤菜\",\"苏菜\"]', '1', '123456', '洋葱', '血液透析');
