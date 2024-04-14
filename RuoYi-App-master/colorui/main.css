@@ -2053,11 +2053,13 @@ button.cuIcon.lg {
 .cu-chat {
 	display: flex;
 	flex-direction: column;
+	overflow-y: auto; /* 添加垂直滚动条 */
+	height: calc(100% - 5upx); /* 减去输入框的高度 */
 }
 
 .cu-chat .cu-item {
 	display: flex;
-	padding: 30upx 30upx 70upx;
+	padding: 5upx 5upx 5upx;
 	position: relative;
 }
 
